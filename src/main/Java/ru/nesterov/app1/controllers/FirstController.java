@@ -13,17 +13,35 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class FirstController {
-    @GetMapping("hello")
-    public String helloPage(@RequestParam(value = "name", required = false) String name,
-                            @RequestParam(value = "surname", required = false) String surname,
+    @GetMapping("calculator")
+    public String helloPage(@RequestParam(value = "param1", required = false) float param1,
+                            @RequestParam(value = "param2", required = false) float param2,
+                            @RequestParam(value = "action", required = false) String action,
                             Model model){
-//        System.out.printf("Hello %s %s!", name, surname);
-        model.addAttribute("message", "Hello " + name + " " + surname);
-        return "first/hello";
-    }
 
-    @GetMapping("bye")
-    public String byePage(){
-    return "first/bye";
+        String message;
+        float result;
+        switch (action){
+            case "addition" :
+                result = param1 + param2;
+                break;
+            case "multiplication" :
+                result = param1 * param2;
+                break;
+            case "division" :
+                result = param1 / param2;
+                break;
+            case "subtraction" :
+                result = param1 - param2;
+                break;
+            default:
+                model.addAttribute("message", "Input incorrect action");
+                return "calculator";
+        }
+
+        message = "Result: " + result;
+        model.addAttribute("message", message);
+        return "calculator";
     }
 }
+
