@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 @Controller
-public class FirstController {
-    @GetMapping("h")
-    public String helloPage(){
-        return "first/hello";
-    }
-
-    @GetMapping("b")
-    public String byePage(){
-    return "first/bye";
+public class SecondController {
+    @GetMapping("e")
+    public String exitPage(){
+        return "second/exit";
     }
 }
